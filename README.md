@@ -7,8 +7,7 @@ Gathered hackathon and huseinhouse dashboards, [huseinhouse.com](http://huseinho
 
 using deep learning and inhouse sonar, able to study abnormal study from postures and social movement network.
 
-#### 2. Cropper System, TEDHACK 2017 ![alt text](tags/tag-deep--learning-green.svg)
-![alt text](tags/tag-computer--vision-green.svg)
+#### 2. Cropper System, TEDHACK 2017 ![alt text](tags/tag-deep--learning-green.svg) ![alt text](tags/tag-computer--vision-green.svg)
 
 using deep learning and computer vision, able to detect flowers attraction probability and crops healthy probability.
 
