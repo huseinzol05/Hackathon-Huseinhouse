@@ -64,14 +64,14 @@ realtime twitter analysis dashboard.
 
 daily twitter analysis dashboard.
 
-#### 6. Word Calculator ![alt text](tags/tag-deep-learning-green.svg)
+#### 6. Word Calculator ![alt text](tags/tag-deep--learning-green.svg)
 
 Leisure projects to implement calculator parser on Word Vector.
 
-#### 7. Neural Network 101 ![alt text](tags/tag-deep-learning-green.svg)
+#### 7. Neural Network 101 ![alt text](tags/tag-deep--learning-green.svg)
 
 Train your own Neural Network with custom hyper-parameters and visualize the decision boundaries.
 
-#### 8. Recurrent Network 101 ![alt text](tags/tag-deep-learning-green.svg)
+#### 8. Recurrent Network 101 ![alt text](tags/tag-deep--learning-green.svg)
 
 Train your own time-stamp data-set on browser using deep recurrent neural network.
