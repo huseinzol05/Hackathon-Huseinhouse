@@ -8,7 +8,7 @@ Gathered hackathon and huseinhouse dashboards, [huseinhouse.com](http://huseinho
 
 ## Hackathon
 
-#### 1. In-building person abnormal study, REKA Hackathon 2017
+#### 1. In-building person abnormal study, REKA Hackathon 2017 ![alt text](tags/tag-deep--learning-green.svg) ![alt text](tags/tag-IOT-green.svg)
 
 using deep learning and inhouse sonar, able to study abnormal study from postures and social movement network.
 
