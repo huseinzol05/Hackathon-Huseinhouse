@@ -14,11 +14,11 @@ We are using Tensorflow Library for dynamic graph machine learning.
 sudo pip install scipy numpy matplotlib tensorflow
 ```
 
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot3.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot4.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot5.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot6.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot7.png)
+![alt text](screenshot/screenshot3.png)
+![alt text](screenshot/screenshot4.png)
+![alt text](screenshot/screenshot5.png)
+![alt text](screenshot/screenshot6.png)
+![alt text](screenshot/screenshot7.png)
 
 ## Old dataset, we not used it anymore
 ![alt text](bar-emotion.png)
