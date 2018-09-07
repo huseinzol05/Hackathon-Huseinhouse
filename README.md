@@ -65,7 +65,7 @@ daily twitter analysis dashboard.
 
 #### 6. Word Calculator ![alt text](tags/tag-deep--learning-green.svg)
 
-Leisure projects to implement calculator parser on Word Vector.
+Leisure project to implement calculator parser on Word Vector.
 
 #### 7. Neural Network 101 ![alt text](tags/tag-deep--learning-green.svg)
 
@@ -77,4 +77,8 @@ Train your own time-stamp data-set on browser using deep recurrent neural networ
 
 #### 9. Github-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg)
 
-#### 10. MBTI-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) 
+Leisure project to study Github profile using machine learning, Github API and realtime crawler.
+
+#### 10. MBTI-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg)
+
+Leisure project to study a MBTI profile PDF using machine learning.
