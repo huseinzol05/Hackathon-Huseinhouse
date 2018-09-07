@@ -1,6 +1,10 @@
 # Hackathon-Huseinhouse
 Gathered hackathon and huseinhouse dashboards, [huseinhouse.com](http://huseinhouse.com)
 
+![alt text](tags/tag-big--data-green.svg)
+![alt text](tags/tag-machine--learning-green.svg)
+![alt text](tags/tag-deep--learning-green.svg)
+
 ## Hackathon
 
 #### 1. In-building person abnormal study, REKA Hackathon 2017
