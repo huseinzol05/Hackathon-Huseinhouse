@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Flower Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<div class="side-nav fixed">
+  <div class="container">
+    <h4 class="header center green-text lighten-2">Flower Dashboard</h4>
+    <div class="row center">
+      <p class="header col s12 light">Smart real-time dashboard for Flowering System</p>
+      <p class="header col s12 light">Connected to server on: <p id="updatetime"></p></p>
+    </div>
+    <div class="row center">
+      <img src="{{ url_for('static', filename='css/Parrot-flower.png') }}" width="200">
+    </div>
+  </div>
+</div>
+<body>
+
+  <nav class="green lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Pollinator.org</a></li>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">Github Repository</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" style="padding-left: 20px;">
+    <div class="row">
+      <div class="col l12 s12">
+        <img src="{{ url_for('video_feed') }}" height="400" width="900">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <h5>Debug</h5>
+        <div class="demo-panel-debug">
+          <ul id="demo-debug">
+          </ul>
+        </div>
+      </div>
+      <div class="col l6 s12">
+        <h5>Sensor status</h5>
+        <div class="demo-panel-debug">
+          <ul id="demo-sensor">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <h6>Temperature</h6>
+        <canvas id="myChart_temp" height="200" width="450"></canvas>
+      </div>
+      <div class="col l6 s12">
+        <h6>Humidity</h6>
+        <canvas id="myChart_humidity" height="200" width="450"></canvas>
+      </div>
+    </div>
+
+
+  </div>
+  <footer class="page-footer green lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">Our Bio</h5>
+          <p class="grey-text text-lighten-4">We are UniMy Coders!<br>If you are interested with our work or want to do future collaboration, feel free to drop a message at our FB page.<br>https://www.facebook.com/UniMy-Coders-332751890530360/</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/socket.io-1.2.0.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script>
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: false,
+    hover: true,
+    gutter: 0,
+    belowOrigin: true,
+    alignment: 'left',
+    stopPropagation: false
+  }
+);
+var socket_light = io('http://www.huseinhouse.com:8060/sensorlight');
+socket_light.on('lightupdate', function(msg){
+  var json = JSON.parse(msg);
+  addmessage('demo-sensor', json['msg'], json['status']);
+  updateData(data_light, json['msg']);
+})
+
+var socket_humidity = io('http://www.huseinhouse.com:8060/sensorhumidity');
+socket_humidity.on('humidityupdate', function(msg){
+  var json = JSON.parse(msg);
+  console.log(json);
+  addmessage('demo-sensor', json['msg'], json['status']);
+  updateData(data_humidity, json['msg']);
+})
+
+var socket_camera = io('http://www.huseinhouse.com:8060/sensorcamera');
+socket_camera.on('cameraupdate', function(msg){
+  var json = JSON.parse(msg);
+  addmessage('demo-debug', json['msg'], json['status']);
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/husein/space/crop/model.ckpt"
+all_model_checkpoint_paths: "/home/husein/space/crop/model.ckpt"

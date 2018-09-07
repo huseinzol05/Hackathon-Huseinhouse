@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Smarthouse Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<div class="side-nav fixed">
+  <div class="container">
+    <h4 class="header center blue-text lighten-1">Smarthouse Dashboard</h4>
+    <div class="row center">
+      <p class="header col s12 light">Smart real-time dashboard for Smart House</p>
+      <p class="header col s12 light">Connected to server on: <p id="updatetime"></p></p>
+    </div>
+    <div class="row center">
+      <img src="css/pega-7-iot-f4.png" width="200">
+    </div>
+  </div>
+</div>
+<body>
+
+  <nav class="blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">Github Repository</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" style="padding-left: 20px;">
+    <div class="row">
+      <div class="col l2 s12">
+        <button id="fanbutton" style="background: url(css/36185-200.png); padding: 0;width: 100px; height:100px;border: none;background-size: contain;"></button>
+        <h6 style="padding-left:20px;"><span id="fanstatus">ON</span> FAN</h6>
+      </div>
+      <div class="col l10 s12">
+        <canvas id="chart-fan" height="60"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l2 s12">
+        <button id="biglampbutton" style="background: url(css/idea-clipart-bulb-icon-9.png); padding: 0;width: 100px; height:100px;border: none;background-size: contain;"></button>
+        <h6><span id="biglampstatus">ON</span> BIG LAMP</h6>
+      </div>
+      <div class="col l10 s12">
+        <canvas id="chart-biglamp" height="60"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l2 s12">
+        <button id="smalllampbutton" style="background: url(css/idea-clipart-bulb-icon-9.png); padding: 0;width: 100px; height:100px;border: none;background-size: contain;"></button>
+        <h6><span id="smalllampstatus">ON</span> SMALL LAMP</h6>
+      </div>
+      <div class="col l10 s12">
+        <canvas id="chart-smalllamp" height="60"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <canvas id="chart-humidity" height="100"></canvas>
+      </div>
+      <div class="col l6 s12">
+        <canvas id="chart-temperature" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="page-footer blue lighten-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 s12">
+        <h5 class="white-text">Our Bio</h5>
+        <p class="grey-text text-lighten-4">We are UniMy Coders!<br>If you are interested with our work or want to do future collaboration, feel free to drop a message at our FB page.<br>https://www.facebook.com/UniMy-Coders-332751890530360/</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/socket.io-1.2.0.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/init.js"></script>
+</body>
+</html>

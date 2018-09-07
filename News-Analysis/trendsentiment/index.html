@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>News Analysis</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+    <div class="card card-loading">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p>Crawling Data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loadingscreen-fail">
+    <div class="card card-loading card-fail">
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <img src='css/xmark.gif' class='imagefail' style='width:130px; display: initial;'>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="failparagraph">Fail to process, recheck your API</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-grey-text lighten-2">News Analysis</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Mining sentiments from trending news</h5>
+      </div>
+      <div class="row center">
+        <div class="input-field col s8">
+          <input id="search" type="text" class="validate">
+          <label>Search Keyword</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="api" type="text" class="validate">
+          <label>API key for premium</label>
+        </div>
+      </div>
+      <div class="row center">
+        <button id="submitbutton" class="waves-effect waves-light btn  blue-grey lighten-2">Search</button>
+      </div><br>
+      <div class="row center">
+        <canvas id="canvas-wordcloud" width="1400"height="650px"></canvas>
+      </div>
+      <div class="row center">
+        <div id="div-network" style="height: 700px;"></div>
+      </div>
+      <div class="row">
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">accessibility</i>Person</div>
+            <div class="collapsible-body"><span id="span-person"></span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">business_center</i>Organization</div>
+            <div class="collapsible-body"><span id="span-org"></span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">location_on</i>GPE</div>
+            <div class="collapsible-body"><span id="span-gpe"></span></div>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col l3 s12">
+          <canvas id="canvas-sentiment"></canvas>
+        </div>
+        <div class="col l3 s12">
+          <canvas id="canvas-emotion"></canvas>
+        </div>
+        <div class="col l3 s12">
+          <canvas id="canvas-msg"></canvas>
+        </div>
+        <div class="col l3 s12">
+          <canvas id="canvas-polarity"></canvas>
+        </div>
+      </div>
+      <div class="row center" id="divresult" hidden>
+      </div>
+    </div>
+    <footer class="page-footer blue-grey lighten-2">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">My Bio</h5>
+            <p class="grey-text text-lighten-4">I'm a jobless, any amount would help my stomach. Cheers<br>husein.zol05@gmail.com</p>
+          </div>
+          <div class="col l3 s12">
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Other Website</h5>
+            <ul>
+              <li><a class="white-text" href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+              <li><a class="white-text" href="http://www.huseinhouse.com/recurrentnet">Recurrent Network 101</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/plotly-latest.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/wordcloud2.js"></script>
+    <script src="js/val.js"></script>
+    <script src="js/init.js"></script>
+  </body>
+  </html>

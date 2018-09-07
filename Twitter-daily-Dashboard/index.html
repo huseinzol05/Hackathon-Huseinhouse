@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Twitter Daily</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="shortcut icon" href="css/twitter.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+</head>
+<style>
+.tweet iframe {
+  border: none !important;
+  box-shadow: none !important;
+}
+</style>
+<body>
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper light-blue lighten-1">
+        <span class="right" style="padding-right:20px;">Tweets processed: <span id="tweets-count"></span>, Last update: <span id="last_update"></span></span>
+        <span class="brand-logo center">Daily Report</span>
+        <ul id="nav-mobile" class="left hide-on-med-and-down" style="padding-left:120px;">
+          <li><a href="#">Twitter trends for Malaysia</a></li>
+          <li><a href="http://www.huseinhouse.com/myhouse/">huseinhouse.com</a></li>
+          <li><a href="http://www.huseinhouse.com/twitterlive/">Twitter live</a></li>
+          <li><a href="http://www.huseinhouse.com/twitterhourly/">Twitter hourly</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="side-nav fixed" style="width:85px; padding-left:10px;padding-right:10px; padding-top: 40px;">
+    <div class="row center" id="click_wordcloud" style="cursor: pointer;">
+      <i class="small material-icons">cloud_queue</i>
+      <small class="center">wordcloud</small>
+    </div>
+    <div class="row center" id="click_graph" style="cursor: pointer;">
+      <i class="small material-icons">timeline</i>
+      <small class="center">sentiment graph</small>
+    </div>
+    <div class="row center" id="click_topics" style="cursor: pointer;">
+      <i class="small material-icons">insert_chart</i>
+      <small class="center">Influencers & Hot-topics</small>
+    </div>
+    <div class="row center" id="click_relationship" style="cursor: pointer;">
+      <i class="small material-icons">filter_tilt_shift</i>
+      <small class="center">Relationship web</small>
+    </div>
+    <div class="row center" id="click_similarity" style="cursor: pointer;">
+      <i class="small material-icons">flip</i>
+      <small class="center">Topics similarity</small>
+    </div>
+    <div class="row center" id="click_location" style="cursor: pointer;">
+      <i class="small material-icons">gps_fixed</i>
+      <small class="center">Location analysis</small>
+    </div>
+    <div class="row center" id="click_radial" style="cursor: pointer;">
+      <i class="small material-icons">all_out</i><br>
+      <small class="center">Radial analysis</small>
+    </div>
+    <div class="row center" id="click_scatter" style="cursor: pointer;">
+      <i class="small material-icons">grain</i>
+      <small class="center">Scatter analysis</small>
+    </div>
+    <div class="row center" id="click_network" style="cursor: pointer;">
+      <i class="small material-icons">public</i>
+      <small class="center">Network analysis</small>
+    </div>
+  </div>
+
+
+  <div class="section no-pad-bot" id="index-banner" style="padding-left:140px;">
+    <div class="row">
+      <div class="col s12 m6">
+        <canvas id="canvas-hashtags-wordcloud" width="850px"height="450px"></canvas>
+      </div>
+      <div class="col s12 m6">
+        <canvas id="canvas-wordcloud" width="850px"height="450px"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <div id="div_sentiment" style="height: 300px;"></div>
+      </div>
+      <div class="col s12 m6">
+        <div id="div_sentiment_kde" style="height: 300px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <div id="div_topic" style="height: 300px;"></div>
+      </div>
+      <div class="col s12 m6">
+        <div id="div_influencer" style="height: 300px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <div id="div_graph" style="height: 500px;"></div>
+      </div>
+      <div class="col s12 m6">
+        <div id="div_punchcard" style="height: 500px;"></div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 m12">
+        <div id="div_sankey" style="height: 600px;"></div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div id="div_heatmap" style="height: 500px;"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div id="div_location" style="height: 800px;"></div>
+    </div>
+    <br>
+    <!-- <div class="row">
+    <div class="col s12 m6">
+    <div id="div_hot_retweet" style="height: 800px;"></div>
+  </div>
+  <div class="col s12 m6">
+  <div id="div_hot_favorite" style="height: 800px;"></div>
+</div>
+</div>
+<br> -->
+<div class="row">
+  <div class="col s12 m6">
+    <div id="div_radial" style="height: 950px;"></div>
+  </div>
+  <div class="col s12 m6">
+    <div id="div_tree" style="height: 950px;"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m12">
+    <div id="div_cluster" style="height: 600px;"></div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col s12 m12">
+    <div id="div_network" style="height: 800px;"></div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row" id="row1-tweets">
+  </div>
+  <div class="row" id="row2-tweets">
+  </div>
+</div>
+</div>
+
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/wordcloud2.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script src="js/najib.js"></script>
+<script src="js/mahathir.js"></script>
+<script sync src="https://platform.twitter.com/widgets.js"></script>
+<script src="js/init.js"></script>
+</body>
+<script>
+$("#click_wordcloud").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#canvas-hashtags-wordcloud").offset().top
+    }, 1000);
+});
+$("#click_graph").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_sentiment").offset().top
+    }, 1000);
+});
+$("#click_topics").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_topic").offset().top
+    }, 1000);
+});
+$("#click_relationship").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_graph").offset().top
+    }, 1000);
+});
+$("#click_similarity").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_sankey").offset().top
+    }, 1000);
+});
+$("#click_location").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_location").offset().top
+    }, 1000);
+});
+$("#click_radial").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_radial").offset().top
+    }, 1000);
+});
+$("#click_scatter").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_cluster").offset().top
+    }, 1000);
+});
+$("#click_network").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#div_network").offset().top
+    }, 1000);
+});
+</script>
+</html>

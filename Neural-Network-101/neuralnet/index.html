@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Neural Network 101</title>
+  <link rel="icon" type="image/x-icon" href="css/net.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+    <div class="card card-loading">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="paracsv">Upload CSV</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="imagescreen">
+    <div class="card card-loading card-image-display">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="closebutton" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-show">
+        <div style="text-align:center;">
+          <img src='' class='imagetoshow' style='width:1500px; height: 350px; display: initial;'>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p>Save this image, once close, the image will automatically delete</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loadingscreen-fail">
+    <div class="card card-loading card-fail">
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <img src='css/xmark.gif' class='imagefail' style='width:130px; display: initial;'>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="failparagraph">Fail to create, recheck your details</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="light-red lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button' href='#' data-activates='dropvisualization'>Visualization</a>
+          <ul id='dropvisualization' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/unimytwitter-user">Personality Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/manifold/">Manifold Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/visualization">Statistics Visualization</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropsentiment'>NLP</a>
+          <ul id='dropsentiment' class='dropdown-content'>
+            <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+            <li><a href="http://www.huseinhouse.com/component">Component Analysis</a></li>
+            <li><a href="#">Text Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/trendsentiment/">Trending Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="#">Stock Prediction 101</a></li>
+        <li><a href="http://www.huseinhouse.com/vandalism">Vandalism Detection System</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/visualization">Data Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+        <li><a href="http://www.huseinhouse.com/trendsentiment">Trend Sentiment</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center red-text lighten-2">Neural Network 101</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Train and Visualize hypothesis space of Deep Multi-Perceptron Neural Network</h5>
+      </div>
+      <div class="row center">
+        <div class="col s9">
+        <div class="file-field input-field">
+          <div class="btn red lighten-2">
+            <span>Upload CSV</span>
+            <input id="uploadcsv" type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="input-field col s3">
+        <input id="epoch" type="number" class="validate" placeholder="Eg: 100">
+        <label>Epoch</label>
+      </div>
+        <div class="col s6 m4">
+          <input type="checkbox" class="filled-in" id="normalization" />
+          <label for="normalization">Normalization</label>
+        </div>
+        <div class="col s6 m4">
+          <input type="checkbox" class="filled-in" id="standardization" />
+          <label for="standardization">Standardization</label>
+        </div>
+        <div class="col s12 m4 mobile-switch">
+          <div class="switch">
+            <label>
+              PCA
+              <input id="pcaortsne" type="checkbox">
+              <span class="lever"></span>
+              SVD
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m3">
+          <input id="splitdata" type="number" class="validate" placeholder="Eg: 80">
+          <label>Split dataset for training(%)</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <input id="hiddenlayer" type="number" min="1" max="10" class="validate" placeholder="Eg: 3">
+          <label>Number of hidden layer</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <select id="selectcolumn">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="True">Enable</option>
+            <option value="False" selected="">Disable</option>
+          </select>
+          <label>Dropout</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <select id="optimizer">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="gradientdescent">Classic Gradient Descent</option>
+            <option value="adagrad" selected="">Adaptive Momentum</option>
+            <option value="rmsprop" selected="">Root Mean Square</option>
+            <option value="adam" selected="">Adaptive + RMS</option>
+          </select>
+          <label>Stochastic Gradient Technique</label>
+        </div>
+      </div>
+      <div hidden class="row" id="disablerow">
+        <div class="input-field col s12 m4">
+          <div class="chips chips-autocomplete" id="activationarray"></div>
+          <label>Activation Function array</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <div class="chips" id="sizearray"></div>
+          <label>Layer Size Array</label>
+        </div>
+
+        <div class="input-field col s12 m4">
+          <div class="chips" id="dropoutarray"></div>
+          <label>Dropout array</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m2">
+          <input id="learningrate" type="number" placeholder="Eg: 0.001" class="validate">
+          <label>Learning rate</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <input id="batchsize" type="number" class="validate" placeholder="Eg: 10">
+          <label>Batch size per training</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <select id="selectoutputlayer">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="tanh">tanh</option>
+            <option value="relu" selected="">ReLU</option>
+            <option value="sigmoid" selected="">sigmoid</option>
+            <option value="softmax" selected="">softmax</option>
+          </select>
+          <label>Output layer Activation</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <select id="selectloss">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="MSE">Mean-Square Error</option>
+            <option value="cross_entropy" selected="">Cross Entropy</option>
+          </select>
+          <label>Loss Function</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <select id="selectpenalty">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="True">Enable</option>
+            <option value="False" selected="">Disable</option>
+          </select>
+          <label>Enable penalty L2</label>
+        </div>
+        <div class="input-field col s12 m2">
+          <input disabled id="penalty" type="number" class="validate" placeholder="Eg: 0.0005">
+          <label>Penalty delta</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input readonly placeholder="Eg: Sepal_Length, Sepal_Width, Petal_Length, Petal_Width" id="selectedcolumn" type="text" class="validate">
+          <label>Selected columns</label>
+        </div>
+      </div>
+      <div class="row" id="rowgoingdown1" hidden>
+        <div id="insertcolumn1"></div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input readonly id="targetcolumn" type="text" placeholder="Eg: Species" class="validate">
+          <label>Target Column</label>
+        </div>
+      </div>
+      <div class="row" id="rowgoingdown2" hidden>
+        <div id="insertcolumn2"></div>
+      </div>
+      <div class="row center">
+        <button id="submitbutton" class="waves-effect waves-light btn red lighten-2">Visualize</button>
+      </div>
+      <br>
+      <div id="output">
+        <div class="row">
+          <div class="col s12 m12">
+            <div id="div_output" style="height: 800px;"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6">
+            <div id="div_loss" style="height: 400px;"></div>
+          </div>
+          <div class="col s6 m6">
+            <div id="div_acc" style="height: 400px;"></div>
+          </div>
+        </div>
+        <div class="row">
+          <ul class="collapsible popout" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">add_circle_outline</i>Report</div>
+        <div class="collapsible-body"><span id="span-status"></span></div>
+      </li>
+    </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer light-red lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">My Bio</h5>
+          <p class="grey-text text-lighten-4">I'm a jobless, any amount would help my stomach. Cheers<br>husein.zol05@gmail.com</p>
+        </div>
+        <div class="col l3 s12">
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Other Websites</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+            <li><a class="white-text" href="http://www.huseinhouse.com/visualization">Data Visualization</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/Maria-Stock-Bot-1444509452281755/">Predict Stock Market</a></li>
+            <li><a class="white-text" href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/papaparse.min.js"></script>
+  <script src="js/val.js"></script>
+  <script src="js/socket.io-1.2.0.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: false,
+    hover: true,
+    gutter: 0,
+    belowOrigin: true,
+    alignment: 'left',
+    stopPropagation: false
+  }
+);
+</script>
+</body>
+</html>

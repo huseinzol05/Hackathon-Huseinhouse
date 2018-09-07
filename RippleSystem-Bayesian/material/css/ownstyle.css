@@ -1,0 +1,199 @@
+.hoverunit li:hover{
+  background: #eee;
+}
+
+.loadingscreen, .containerpictures, .imagescreen, .loadingscreen-fail{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
+}
+
+.imagescreen, .loadingscreen-fail{
+  display: none;
+}
+
+.imagefail{
+  width: 130px;
+  height: 130px;
+  display: inherit;
+}
+
+.imagetoshow{
+  width: 700px;
+  height: 700px;
+  display: inherit;
+}
+
+.preloader-wrapper.big{
+  top: 0px;
+}
+
+.card-image-loading{
+  margin-top: 20px;
+}
+
+.card-loading, .card-loading-image, .card-loading-fail{
+  z-index: 10000;
+  position: fixed;
+  width: 20%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-image-display{
+  width: 70%;
+}
+
+.picture-container{
+  z-index: 10000;
+  position: fixed;
+  top: 30%;
+  left: 53%;
+  transform: translate(-53%, -30%);
+}
+
+.picker__frame{
+  right: 0px;
+}
+
+.picker__month-display{
+  font-size: 1rem;
+}
+
+.picker__day-display{
+  font-size: 3.0rem;
+}
+
+.picker--opened .picker__holder{
+  top: 0;
+}
+
+.toast, .collection{
+  background-color: #fff;
+  color: #323232;
+}
+
+.containerfloat{
+  position: fixed;
+  right: -15%;
+  z-index: 10000;
+  transition: top 0.5s;
+  top: 10%;
+  width: 15%;
+}
+
+.circle-detail{
+  width: 15px;
+  height: 15px;
+}
+
+.circle-about{
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+}
+
+#hoverspan{
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #323232;
+}
+
+#container{
+  position: fixed;
+  z-index: 10000;
+  transition: top 0.5s;
+  top: 10%;
+  width: 30%;
+  right: 30%;
+  display: none;
+}
+
+#containerhover{
+  position: fixed;
+  z-index: 10000;
+  transition: top 0.5s;
+  width: 13%;
+  display: none;
+}
+
+.collection{
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.collection a.collection-item{
+  height: 100px;
+}
+
+.collection a.collection-item p{
+  margin: 0;
+}
+
+.boxdetail{
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.containerpictures{
+  display: none;
+}
+
+.row .col.s6{
+  width: 50%;
+}
+
+.groupdown-facilities, .groupdown-time{
+  min-width: 280px;
+}
+
+input[type=range]+.thumb.active .value{
+  margin-top: -8px;
+}
+
+/* Laptop */
+@media (max-width: 1400px){
+  .row .col.s6{
+    width: 40%;
+  }
+
+  .groupdown-facilities, .groupdown-time{
+    min-width: 280px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 767px){
+
+}
+
+/* mobile */
+@media (max-width: 500px){
+  .card-loading{
+    width: 50%;
+  }
+
+  .containerfloat{
+    right: -50%;
+    width: 50%;
+  }
+
+  .row .col.s6{
+    width: 50%;
+  }
+
+  .groupdown-facilities, .groupdown-time{
+    min-width: 170px;
+  }
+
+}

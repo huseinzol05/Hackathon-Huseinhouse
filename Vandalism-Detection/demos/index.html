@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vandalism Crowd-Sourcing</title>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="css/uploader.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/demo.css" rel="stylesheet" />
+  <style>
+  #myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #myImg:hover {opacity: 0.7;}
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
+    max-height: 100%
+  }
+
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+  }
+
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+
+  /* Add Animation */
+  .modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+  }
+
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
+  </style>
+
+</head>
+<body role="document">
+  <div class="container demo-wrapper">
+    <div class="page-header">
+      <h3>Live <small>Smart Vandalism Detection</small></h3>
+      Integrated with real-time notification from Facebook Messenger <a href="https://www.facebook.com/vandalitactor">Vandalitactor</a> and map pin-point
+    </div>
+    <div class="row demo-columns">
+      <div class="col l6">
+        <div id="drag-and-drop-zone" class="uploader">
+          <div>Drag &amp; Drop Images Here</div>
+          <div class="or">-or-</div>
+          <div class="browser">
+            <label>
+              <span>Click to open the file Browser</span>
+              <input type="file" name="files" id="files" multiple="multiple" title='Click to add Files'>
+            </label>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Debug</h4>
+          </div>
+          <div class="panel-body demo-panel-debug">
+            <ul id="demo-debug">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col l6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Uploads</h4>
+          </div>
+          <div class="panel-body demo-panel-files" id='demo-files'>
+            <span class="demo-note">No Files have been selected/dropped yet.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Crowd Data</div>
+      <div class="collapsible-body"><span>
+        <table class="highlight">
+          <thead>
+            <tr>
+                <th>Facebook ID</th>
+                <th>Result</th>
+                <th>Latitude & Longitude</th>
+                <th>Report Time</th>
+                <th>Picture</th>
+            </tr>
+          </thead>
+          <tbody id="updatetable">
+          </tbody>
+        </table>
+      </span></div>
+    </li>
+    </ul>
+    </div>
+    <div class="row">
+      <div class="box" style="height: 600px;">
+        <div id='map-canvas' style='width: 100%; height: 100%;'></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/pedestre.jpg" width="300">
+      </div>
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/152-2.jpg" width="300">
+      </div>
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/1.jpg" width="300">
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p><a href="dataset/">check crowd here</a> &copy; Mongoool 2017</p>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+</div>
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/demo.min.js"></script>
+  <script type="text/javascript" src="dmuploader.min.js"></script>
+  <script type="text/javascript" src="js/init.js"></script>
+  <script src="js/socket.io-1.2.0.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWEOHV7MUPzD9kmd61T0kBN0E3h6aKPEk&callback=initMap"></script>
+  <script>
+  function myFunction(x) {
+    val_td = x.innerHTML.split("<td>");
+    loc = val_td[3].slice(0, -5);
+    loc = loc.split(", ");
+    var geo = {
+      'lat': parseFloat(loc[0]),
+      'lng': parseFloat(loc[1])
+    };
+    $('.collapsible').collapsible('close', 0);
+    placeMarker(geo);
+}
+  function clickme(val){
+    modalImg.src = 'http://www.huseinhouse.com/output-vandalism/' + val;
+    modal.style.display = "block";
+  }
+  var socket = io('https://huseinzol05.dynamic-dns.net:9001/vandalismsystem', {secure: true});
+  socket.on('vandalismstart', function(msg){
+    var json = JSON.parse(msg);
+    var string;
+    for(var i = 0; i < json.length; i++){
+      string += "<tr onclick='myFunction(this)'><td>" + json[i]['facebookid'] + "</td><td>" + json[i]['result'] + "</td><td>" + json[i]['latitude'] + ", " + json[i]['longitude'] + "</td><td>" + json[i]['reporttime'] + "</td><td>" + json[i]['pictures'] + "</td></tr>";
+    }
+    $('#updatetable').html(string);
+  });
+  socket.on('vandalismupdate', function(msg){
+    var json = JSON.parse(msg);
+     var $toastContent = $('<span>'+ json['reporttime'] +'</span>').add($('<button class="btn-flat toast-action" onclick="clickme(\''+ json['picture'] +'\')">Click me!</button>'));
+    Materialize.toast($toastContent, 10000);
+  });
+  </script>
+</body>
+</html>

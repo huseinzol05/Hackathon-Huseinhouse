@@ -1,0 +1,473 @@
+<html>
+<head>
+  <!--Let browser know website is optimized for mobile-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+  <title>Ripple System</title>
+  <LINK REL="SHORTCUT ICON" HREF="material/img/favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"  media="screen, projection"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/flexboxgrid/6.2.0/flexboxgrid.min.css" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href="material/css/style.css" type="text/css" rel="stylesheet" media="screen, projection"/>
+    <link href="material/css/ownstyle.css" type="text/css" rel="stylesheet" media="screen, projection"/>
+  </head>
+
+  <body>
+    <header>
+      <div class="loadingscreen">
+        <div class="card card-loading">
+          <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+          <div class="card-image card-image-loading">
+            <div style="text-align:center;">
+              <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div style="text-align:center;">
+              <p id="loadingtext">Loading GeoJson and traffic data</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="imagescreen">
+        <div class="card card-loading-image card-image-display">
+          <a class="btn-floating btn-small waves-effect waves-light red" id="closebutton" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+          <div class="card-image card-image-show">
+            <div style="text-align:center;">
+              <img src='https://raw.githubusercontent.com/huseinzol05/Data-Visualization-PCA-TSNE/master/pca-normalize-2d-no-k-means.png' class='imagetoshow' style='width:1200px; height: 600px; display: initial;'>
+            </div>
+          </div>
+          <div class="card-content">
+            <div style="text-align:center;">
+              <p>Save this image, once close, the image will automatically delete</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="loadingscreen-fail">
+        <div class="card card-loading-fail card-fail">
+          <div class="card-image card-image-loading">
+            <div style="text-align:center;">
+              <img src='material/css/xmark.gif' class='imagefail' style='width:130px; display: initial;'>
+            </div>
+          </div>
+          <div class="card-content">
+            <div style="text-align:center;">
+              <p id="failparagraph">Fail to create, recheck your details</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id='containerinformation' class="containerfloat">
+        <div class="collection" style="padding-left: 15px;">
+          <p><img src="material/img/gold.png" class="circle circle-detail"> 100 km/h and more</p>
+          <p><img src="material/img/green.png" class="circle circle-detail"> 80 km/h and more</p>
+          <p><img src="material/img/purple.png" class="circle circle-detail"> 60 km/h and more</p>
+          <p><img src="material/img/lightblue.png" class="circle circle-detail"> 40 km/h and more</p>
+          <p><img src="material/img/blue.png" class="circle circle-detail"> 20 km/h and more</p>
+          <p><img src="material/img/red.png" class="circle circle-detail"> less than 20 km/h</p>
+          <p><img src="material/img/grey.jpg" class="circle circle-detail"> unknown</p>
+          <p id='dateinformation'></p>
+          <p id='dayinformation'></p>
+          <p id='timeinformation'></p>
+          <p id='scalefactor'></p>
+        </div>
+      </div>
+
+      <div id='containerinformation-membership' class="containerfloat">
+        <div class="collection" id="collectiontoadd" style="padding-left: 15px;">
+          <p><img src="img/color/%236D6D63.png" class="circle circle-detail"> impossible to be affected</p>
+          <p><img src="img/color/%23FAEF03.png" class="circle circle-detail"> almost impossible affected</p>
+          <p><img src="img/color/%2303FA1D.png" class="circle circle-detail"> maybe affected</p>
+          <p><img src="img/color/%230329FA.png" class="circle circle-detail"> affected</p>
+          <p><img src="img/color/%23FA0338.png" class="circle circle-detail"> strongly affected</p>
+        </div>
+      </div>
+
+      <div id='container'>
+        <div class="card-panel teal">
+          <span class="white-text" id="containerspan"></span>
+        </div>
+      </div>
+
+      <div id='containerhover'>
+        <div class="card-panel" style="height: 48px; padding-top: 10px;">
+          <span id="hoverspan" style="margin-bottom: 20px;">9898574560: 100 km/h</span>
+        </div>
+      </div>
+
+      <div class='containerpictures'>
+        <div class='picture-container'>
+          <a href="https://www.facebook.com/profile.php?id=100000556666994" target="_blank"><img src="material/img/akmal.jpg" class="circle circle-about"></a>
+          <a href="https://www.facebook.com/azrul.hazizan" target="_blank"><img src="material/img/azrul.jpg" class="circle circle-about"></a>
+          <a href="https://www.facebook.com/fydxoz" target="_blank"><img src="material/img/firdaus.jpg" class="circle circle-about"></a>
+          <a href="https://www.facebook.com/cein.hampa" target="_blank"><img src="material/img/husein.jpg" class="circle circle-about"></a>
+        </div>
+      </div>
+
+      <div class="navbar-fixed" style="z-index: 999; height: 44px; line-height: 44px;">
+        <ul id="dropdown-more" class="dropdown-content hoverunit" style="min-width: 148px !important; width: 148px !important; margin-left: 0px; z-index: 99999; overflow: visible;">
+          <li><a id='openshare' class="waves-effect waves-light" href="#">Share</a></li>
+          <li class="divider"></li>
+          <li><a id='openbusiness' class="waves-effect" href="#">For Business</a></li>
+          <li class="divider"></li>
+          <li><a id='openabout' class="waves-effect" href="#">About</a></li>
+          <li class="divider"></li>
+          <li><a id='logout' class="waves-effect" href="#">Logout</a></li>
+          <li class="divider"></li>
+        </ul>
+        <nav class="blue-grey darken-3 adjust-sidenav" role="navigation" style=" height: 44px; line-height: 44px;">
+          <div class="">
+            <div class="nav-wrapper">
+              <div class="input-field col s6" style="position: absolute; top: 25%; left: 4%;">
+                <input autocomplete="off" placeholder="Search here" type="text" class="validate">
+              </div>
+              <ul>
+                <li class="left hide-on-med-and-down modal-trigger">
+                  <i class="large mdi-action-search" style="padding-left: 20px; padding-right: 20px; height: 44px; line-height: 44px;"></i>
+                </li>
+                <li class="right hide-on-small-only">
+                  <a class="dropdown-button waves-effect waves-light" href="#!" data-activates="dropdown-more"><i class="mdi-navigation-more-vert" style='height: 44px; line-height: 44px;'></i></a>
+                </li>
+              </ul>
+              <ul id="neighbourhood-list" class="dropdown-content scrollbar" style="z-index:99999; max-height: 500px; overflow: auto; background: rgba(255, 255, 255, 1);">
+              </ul>
+              <ul id="traffic-list" class="dropdown-content scrollbar" style="z-index:99999; max-height: 500px; overflow: auto; background: rgba(255, 255, 255, 1);">
+                <li><a class="toclick_traffic" data-values="all">All</a></li>
+                <li><a class="toclick_traffic" data-values="100km">100km/h and more</a></li>
+                <li><a class="toclick_traffic" data-values="80km">80km/h and less</a></li>
+                <li><a class="toclick_traffic" data-values="60km">60km/h and less</a></li>
+                <li><a class="toclick_traffic" data-values="40km">40km/h and less</a></li>
+                <li><a class="toclick_traffic" data-values="20km">20km/h and less</a></li>
+              </ul>
+              <ul id="number-membership" class="dropdown-content scrollbar" style="z-index:99999; max-height: 500px; overflow: auto; background: rgba(255, 255, 255, 1);">
+                <li><a class="toclick_membership" data-values="4">4 membership</a></li>
+                <li><a class="toclick_membership" data-values="5">5 membership</a></li>
+                <li><a class="toclick_membership" data-values="6">6 membership</a></li>
+                <li><a class="toclick_membership" data-values="7">7 membership</a></li>
+              </ul>
+              <ul id="slide-out" class="side-nav fixed" style="z-index: 9999; overflow-y: hidden;">
+                <div class="action-directions-steps style-directions-steps hidden">
+                  <li style="padding: 0;">
+                    <div class="green white-text directions-title-drawer"><span class="action-name-data"></span><span class="right" style="padding-top: 20px;"><i class="mdi-navigation-cancel action-sidenav-hideonsmall action-directionssteps-cancel drawer-close"></i></span></div>
+                    <div class="scrollbar steps-container">
+                      <div id="action-directions-googlesteps" class="scrollbar"></div>
+                    </div>
+                  </li>
+                </div>
+                <div class="action-neighbourhood-sidenav" style="height: 100%;">
+                  <li class="z-depth-3" style="position: absolute; z-index: 99; overflow: visible; background: rgba(0, 0, 0, .8); border-radius: 4px; left: 15px; top: 20px; width: 290px;">
+                    <a class="dropdown-button waves-effect waves-light style-neighborhood" href="#" data-activates="neighbourhood-list">
+                      <span class="placesButton">Hot Places</span><i class="mdi-content-filter-list left" data-activates="neighbourhood-list"></i>
+                    </a>
+                  </li>
+                  <li class="z-depth-3" style="position: absolute; z-index: 9; overflow: visible; background: rgba(0, 0, 0, .8); border-radius: 4px; left: 15px; top: 130px; width: 290px;">
+                    <a class="dropdown-button waves-effect waves-light style-neighborhood" href="#" data-activates="traffic-list">
+                      <span class="placesButton">Traffic Filter</span><i class="mdi-content-filter-list left" data-activates="traffic-list"></i>
+                    </a>
+                  </li>
+                  <li class="z-depth-3" style="position: absolute; z-index: 8; overflow: visible; background: rgba(0, 0, 0, .8); border-radius: 4px; left: 15px; top: 250px; width: 290px;">
+                    <a class="dropdown-button waves-effect waves-light style-neighborhood" href="#" data-activates="number-membership">
+                      <span class="placesButton">Membership count</span><i class="mdi-content-filter-list left" data-activates="number-membership"></i>
+                    </a>
+                  </li>
+                  <li style="padding: 0;">
+                    <div class="card side-nav-card" style="">
+                      <div class="card-image card-image-drawer waves-block waves-light">
+                        <div class="action-nbhdimg-data neighbor-image" style="-webkit-box-shadow: inset 0px 6px 6px 0px rgba(0,0,0,0.37); -moz-box-shadow: inset 0px 6px 6px 0px rgba(0,0,0,0.37); box-shadow: inset 0px 6px 6px 0px rgba(0,0,0,0.37);"></div>
+                      </div>
+                      <div class="card-content">
+                        <div class="action-drawer-open sb-drawer-section truncate waves-effect waves-dark blue white-text" data-drawer-type="deal" style="margin-top: 16px;" >
+                          <i class="material-icons blue-text text-lighten-4" style="margin-right: 1rem;">announcement</i>Latest Updates
+                          <span class="action-sidenav-drawertitles" data-drawer-type="deal"></span>
+                        </div>
+                        <div class="sb-drawer-section empty-drawer truncate waves-effect waves-dark"></div>
+                        <div class="collection" id="addcollection">
+                        </div>
+                        <div class="drawer-logo">
+                          <div class="row" style="margin-bottom: 0px;">
+                            <div class="col-xs-12" style="text-align: center;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="deal-drawer" class="action-drawer sb-drawer-list" style="z-index: 99; color: #212121; overflow-y:hidden;" data-drawer-type="deal">
+                        <div class="row blue white-text action-drawer-close z-depth-1" style="height: 48px;">
+                          <div class="col-xs-3 center-xs list-marker">
+                            <div class="box"><i class="mdi-content-undo" style="line-height:48px;"></i></div>
+                          </div>
+                          <div class="col-xs list-description center-xs" style="border-bottom: 0px;">
+                            <div class="box">
+                              <h6 class="left white-text" style="line-height: 30px;">Latest Updates</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="collection" id="addcollection2">
+                        </div>
+                        <div class="action-drawer-container"></div>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+
+    </header>
+    <main>
+      <div class="row map-container center-xs">
+        <div class="navbar-fixed experience-bar">
+          <nav class="experience-bar">
+            <div class="nav-wrapper blue-grey darken-4 experience-buttons">
+              <div class="col-xs">
+                <div class="input-field col s3" style="text-align: left;">
+                  <span class="hide-on-med-and-down" style="margin-right: 7px;">Facilities</span>
+                  <a class='dropdown-button btn green darken-1 groupdown-facilities' style='padding: 0 1rem; margin-left:0px; text-align: left' href='#' data-activates='category-list'>
+                    <span class="action-category-current">Everything</span><i class="material-icons right" style="line-height: inherit;">expand_more</i>
+                  </a>
+                  <ul id="category-list" class="left dropdown-content action-categorytab-set blue-grey darken-3 white-text" data-select='#selectCategory' data-label='#categoriesButton'
+                  style="z-index:99999; max-height: 540px; overflow: auto; margin-top: 0px; min-width: 280px; width: 100%; max-width: 360px;">
+                  <li class="waves-effect waves-light action-category-change" data-category-id="all" data-label="Everything">
+                    <a class='item white-text itemclick' data-values="everything">Everything</a>
+                  </li>
+                  <li class="waves-effect waves-light action-category-change tab-places_to_eat">
+                    <a class='item white-text itemclick' data-values="hospital">Hospitals</a>
+                  </li>
+                  <li class="waves-effect waves-light action-category-change tab-things_to_do">
+                    <a class='item white-text itemclick' data-values="school">Schools</a>
+                  </li>
+                  <li class="waves-effect waves-light action-category-change tab-shopping">
+                    <a class='item white-text itemclick' data-values="sectors">Government Sectors</a>
+                  </li>
+                  <li class="waves-effect waves-light action-category-change tab-places_to_stay ">
+                    <a class='item white-text itemclick' data-values="malls">Malls</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="input-field col s3" style="text-align: left;">
+                <span class="hide-on-med-and-down" style="margin-right: 7px;">Time</span>
+                <a class='dropdown-button btn pink darken-1 groupdown-time' style='padding: 0 1rem; margin-left:0px; text-align: left' href='#' data-activates='category-list2'>
+                  <span class="action-category-current">Choose</span><i class="material-icons right" style="line-height: inherit;">expand_more</i>
+                </a>
+                <ul id="category-list2" class="left dropdown-content action-categorytab-set hoverunit" style="z-index:99999; max-height: 540px; overflow: auto; margin-top: 0px; min-width: 280px; width: 100%; max-width: 360px;">
+                  <li>
+                    <a id='timeavg' class='timebutton'>Average</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time0' class='timebutton'>12.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time1' class='timebutton'>1.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time2' class='timebutton'>2.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time3' class='timebutton'>3.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time4' class='timebutton'>4.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time5' class='timebutton'>5.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time6' class='timebutton'>6.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time7' class='timebutton'>7.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time8' class='timebutton'>8.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time9' class='timebutton'>9.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time10' class='timebutton'>10.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time11' class='timebutton'>11.00 AM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time12' class='timebutton'>12.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time13' class='timebutton'>1.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time14' class='timebutton'>2.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time15' class='timebutton'>3.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time16' class='timebutton'>4.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time17' class='timebutton'>5.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time18' class='timebutton'>6.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time19' class='timebutton'>7.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time20' class='timebutton'>8.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time21' class='timebutton'>9.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time22' class='timebutton'>10.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a id='time23' class='timebutton'>11.00 PM</a>
+                  </li>
+                  <li class="divider"></li>
+                </ul>
+              </div>
+              <div class="input-field col s3" style="text-align: left;">
+                <span class="hide-on-med-and-down" style="margin-right: 7px;">Scale Factor: <span id="spanscale">10</span></span>
+                <p class="range-field" style="width: 50%; margin-left: 95px; top: -75;">
+                  <input type="range" value="10" id="rangefactor" min="10" max="50" />
+                </p>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <div class="action-directions-topnav directions-container hidden">
+
+          <div class="card basic-card card-address">
+            <div class="card-content grey-text text-darken-4" style="padding: 0 5px; height: 48px; ">
+
+              <div class="card-details">
+                <span class="hide-on-small-only action-directions-showsteps action-address-data waves-effect waves-deep-purple btn-flat no-margin left"> </span>
+                <span class="hide-on-med-and-up action-address-data waves-effect waves-deep-purple btn-flat no-margin left"> </span>
+                <span class="hide-on-small-only action-directions-showsteps action-directionsdistance-data left btn-flat green white-text" style="padding: 0 5px;"></span>
+                <span class="hide-on-med-and-up action-directionsdistance-data left btn-flat green white-text" style="padding: 0 5px;"></span>
+                <span class="action-directions-cancel right btn-flat waves-effect waves-dark no-margin"><i class="mdi-navigation-cancel green-text" style="font-size: 2.2rem;"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs sb-map-wide">
+          <div class="box" style="margin-top: 40px; height: -moz-calc(100% - 30px); /* Firefox */ height: -webkit-calc(100% - 30px); /* Chrome, Safari */ height: calc(100% - 30px);">
+            <div id='map-canvas' style='width: 100%; height: 100%; margin: 0 0 0 0;'></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer>
+      <div class="fixed-action-btn" style="bottom: 24px; right: 48px;">
+        <a class="action-towernav-toggle btn-floating btn-large green">
+          <i class="large mdi-navigation-menu"></i>
+        </a>
+        <ul class="action-towernav-container hidden">
+          <li><a id="activateoverlay" class="action-towernav-toggle btn-floating yellow black-text"><i class="large mdi-action-explore black-text"></i></a></li>
+          <li><a id="clearmap" class="action-towernav-toggle btn-floating green"><i class="large mdi-action-visibility-off white-text"></i></a></li>
+          <li><a id="activateinformation" href="#" class="action-towernav-toggle action-deal-on btn-floating blue"><i class="material-icons white-text">announcement</i></a></li>
+          <li><a id="activatecalendar" href="#" class="action-towernav-toggle btn-floating pink"><i class="large mdi-action-event"></i></a></li>
+        </ul>
+        <input hidden id="datedata" type="date" class="datepicker">
+      </div>
+    </footer>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/color.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWEOHV7MUPzD9kmd61T0kBN0E3h6aKPEk&callback=initialize"></script>
+    <script type="text/javascript" src="js/maplabel-compiled.js"></script>
+    <script type="text/javascript" src="js/map-overlay.js"></script>
+    <script src="js/socket.io-1.2.0.js"></script>
+    <script>
+    var socket = io('https://huseinzol05.dynamic-dns.net:9001', {secure: true});
+    socket.on('rippleupdate', function(msg){
+      var json = JSON.parse(msg);
+      for (i = 0; i < json.length; i++){
+        $('#addcollection').append("<a href='#!' class='collection-item toclick' data-values='" + json[i].latitude + "," + json[i].longitude +"'><p>" + json[i].cause + "</p><p>" + json[i].latitude + "</p><p>" + json[i].longitude + "</p><p>" + json[i].reporttime + "</p></a>");
+        $('#addcollection2').append("<a href='#!' class='collection-item toclick' data-values='" + json[i].latitude + "," + json[i].longitude +"'><p>" + json[i].cause + "</p><p>" + json[i].latitude + "</p><p>" + json[i].longitude + "</p><p>" + json[i].reporttime + "</p></a>");
+      }
+    });
+    </script>
+  </body>
+  </html>

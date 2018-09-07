@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Face Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<div class="side-nav fixed">
+  <div class="container">
+    <h4 class="header center blue-text">Face Dashboard</h4>
+    <div class="row center">
+      <p class="header col s12 light">Smart real-time dashboard for Face System</p>
+      <p class="header col s12 light">Connected to server on: <p id="updatetime"></p></p>
+      <p class="header col s12 light">House's emotion: <p id="updateemotion">Neutral</p></p>
+    </div>
+    <div class="row center">
+      <button id="redbutton" class="waves-effect waves-light btn red lighten-2">Call House</button>
+    </div>
+    <div class="row center">
+      <img src="{{ url_for('static', filename='css/deep-learning-v1.png') }}" width="200">
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Music suggestion</p>
+      <a id="refmusic" href="http://open.spotify.com/user/annalogy/playlist/1wRe9FZuZ1ndJct6aGyGfZ"><img width="150" id="imgalbum" height="150" src="https://mosaic.scdn.co/640/672e43fcc0bc053a9a5f52124891779970e7c7fc96505f6b25ba6c5d48f017cbebe9f606729f0b971aeaff13887d72bc456676b6dc6aaf6b43e8ee58274ea0ef70506eb327170c6cfd08b8b344e248a6"></a>
+    </div>
+  </div>
+</div>
+<body>
+
+  <nav class="blue" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://github.com/Mongoool/FACE2017/blob/master/opencv.py">Source Code</a></li>
+        <li><a href="https://github.com/Mongoool/FACE2017">Github Repository</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" style="padding-left: 20px;">
+    <div class="row">
+      <div class="col l12 s12">
+        <img src="{{ url_for('video_feed') }}" height="400" width="900">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l12 s12">
+        <h5>Camera status</h5>
+        <div class="demo-panel-debug">
+          <ul id="demo-sensor">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <h6>Recognized detected</h6>
+        <canvas id="myChart_recognized" height="200" width="450"></canvas>
+      </div>
+      <div class="col l6 s12">
+        <h6>Unknown detected</h6>
+        <canvas id="myChart_unknown" height="200" width="450"></canvas>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 0px;">
+      <div class="col s12 m12">
+        <div id="div_graph" style="height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">Our Bio</h5>
+          <p class="grey-text text-lighten-4">We are Shiat team!</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/socket.io-1.2.0.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+  <script>
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: false,
+    hover: true,
+    gutter: 0,
+    belowOrigin: true,
+    alignment: 'left',
+    stopPropagation: false
+  }
+);
+var socket_camera = io('https://huseinzol05.dynamic-dns.net:9001/sensorcamera', {secure: true});
+socket_camera.on('cameraupdate', function(msg){
+  var json = JSON.parse(msg);
+  if(json['data']){
+    updateData(data_recognized, json['data'][1]);
+    updateData(data_unknown, json['data'][0]);
+  }
+  if(!(json['kde'] || json['database']))addmessage('demo-sensor', msg, 'OK');
+  if(json['alert']) Materialize.toast(json['alert'], 4000);
+  if(json['emotion']) {
+    $('#updateemotion').html(json['emotion']);
+    requestmusic(json['emotion']);
+  }
+  if(json['histogram']){
+    var bar_predict = {
+      x: json['histogram'][0],
+      y: json['histogram'][1],
+      type: 'bar',
+      name: 'histogram emotion'
+    };
+    var kde_predict = {
+      x: json['kde'][0],
+      y: json['kde'][1],
+      mode: 'lines',
+      name: 'KDE emotion'
+    };
+    var layout_bar = {
+      'title': "{'neutral': 0, 'sadness': 1, 'disgust': 2, 'anger': 3, 'surprise': 4, 'fear': 5, 'happiness': 6}",
+      xaxis: {
+        autotick: true
+      }
+    };
+    Plotly.newPlot('div_graph', [bar_predict, kde_predict], layout_bar);
+  }
+})
+
+</script>
+</body>
+</html>

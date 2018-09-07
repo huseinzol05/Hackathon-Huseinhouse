@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Security Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<div class="side-nav fixed">
+  <div class="container">
+    <h4 class="header center orange-text">Security Dashboard</h4>
+    <div class="row center">
+      <p class="header col s12 light">Smart real-time dashboard for Security System</p>
+      <p class="header col s12 light">Connected to server on: <p id="updatetime"></p>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Power up by</p>
+      <img src="{{ url_for('static', filename='css/apple-watch.png') }}" width="200">
+    </div>
+  </div>
+</div>
+<body>
+
+  <nav class="orange" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://github.com/Mongoool/FACE2017/blob/master/opencv.py">Source Code</a></li>
+        <li><a href="https://github.com/Mongoool/FACE2017">Github Repository</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" style="padding-left: 20px;">
+    <div class="row">
+      <div class="col l12 s12">
+        <img src="{{ url_for('video_feed') }}" height="400" width="1200">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l12 s12">
+        <h5>Camera status</h5>
+        <div class="demo-panel-debug">
+          <ul id="demo-sensor">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <h6>Person detected</h6>
+        <canvas id="person_graph" height="100"></canvas>
+      </div>
+      <div class="col l6 s12">
+        <h6>Abnormal count</h6>
+        <canvas id="abnormal_graph" height="100"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        <div id="distribution" style="height: 200px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        <div id="heatmap_sonar" style="height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">My Bio</h5>
+          <p class="white-text text-lighten-4">Lone Ranger from DONT-KNOW-TEAM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/socket.io-1.2.0.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Fisherman Analysis</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+    <div class="card card-loading">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="paracsv">Crunching your historical data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loadingscreen-fail">
+    <div class="card card-loading card-fail">
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <img src='css/xmark.gif' class='imagefail' style='width:130px; display: initial;'>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="failparagraph">Fail to create, recheck your details</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="../index.html">Study another fisherman</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav><br><br>
+  <div class="row">
+    <div class="col s2" style="padding-left:40px;">
+      <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" id="pic" style="height:200px;">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Details<i class="material-icons right">more_vert</i></span>
+      <div class="row center">
+        <div class="input-field col s12">
+          <input id="future" type="number" class="validate">
+          <label>Future day count</label>
+        </div>
+      </div>
+      <div class="row center">
+        <button id="submitbutton" class="waves-effect waves-light btn light-blue lighten-2">Predict</button>
+      </div>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
+      <span id="details"><p>Name: Husein Zolkepli</p><p>Age: 22 years old</p><p>Address: Cyberjaya, Selangor</p><p>Port: Kuala Selangor, Selangor</p></span>
+    </div>
+  </div>
+    </div>
+    <div class="col s10">
+      <div id="div-catch" style="height: 500px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="div-overlap" style="height: 400px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-week" style="height: 400px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-month" style="height: 400px;"></div>
+  </div>
+  <div class="row" style="padding-left:30px;padding-right:30px;">
+    <div class="col s4">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">insert_chart</i>Dicker-Fuller Test on Daily</div>
+          <div class="collapsible-body"><span id="dicker-daily"></span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="col s4">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">insert_chart</i>Dicker-Fuller Test on Week</div>
+          <div class="collapsible-body"><span id="dicker-weekly"></span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="col s4">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">insert_chart</i>Dicker-Fuller Test on Month</div>
+          <div class="collapsible-body"><span id="dicker-monthly"></span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div id="div-avg" style="height: 250px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-correlation" style="height: 400px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-bar" style="height: 300px;"></div>
+  </div>
+
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+  <script src="js/val_caijuan.js"></script>
+  <script src="js/val_wengkei.js"></script>
+  <script src="js/val_xiangting.js"></script>
+  <script src="js/val_husein.js"></script>
+  <script src="js/init.js"></script>
+</body>
+</html>

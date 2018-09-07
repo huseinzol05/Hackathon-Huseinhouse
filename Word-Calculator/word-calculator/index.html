@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Word Calculator</title>
+	<link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="demo-resources/demo.css" rel="stylesheet"/>
+
+	<link href="css/sandbox.css" rel="stylesheet"/>
+	<style>
+	textarea{
+		height:1rem;
+	}
+	li{
+		margin-left: 0px;
+	}
+	</style>
+</head>
+
+<body>
+	<br><br>
+	<h1>Book Calculator</h1>
+
+	<h2>a mini calculator for Words</h2>
+
+	<br>
+	<div class="row">
+		<div class="input-field col s12 m5 offset-m3">
+			<select id="select-book">
+				<option value="" disabled>Choose your book</option>
+				<option value="sorcerer-stone" selected>Harry Potter and the Philosopher's Stone</option>
+				<option value="secret-chamber">Harry Potter and the Chamber of Secrets</option>
+				<option value="azkaban">Harry Potter and the Prisoner of Azkaban</option>
+				<option value="goblet-fire">Harry Potter and the Goblet of Fire</option>
+				<option value="halfblood-prince">Harry Potter and the Half-Blood Prince</option>
+				<option value="hallow">Harry Potter and the Deathly Hallows</option>
+				<option value="hunger-game">The Hunger Games</option>
+				<option value="catching-fire">Catching Fire</option>
+				<option value="throne">Game of Throne</option>
+			</select>
+			<label>Select book</label>
+		</div>
+		<div class="input-field col s10 offset-s3 m2">
+			<button id="example" class="waves-effect waves-light btn black">Example</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m6 offset-m3">
+			<div id="sandbox">
+				<div class="output">
+				</div>
+				<div class="input">
+					<input id="input" placeholder="// type some equation and hit enter (clear to clear console)">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$('.input').bind('keypress', function(e) {
+		if ((e.keyCode || e.which) == 13) {
+			if($('#input').val() == 'clear') {
+				$('.output').html('');
+				$('#input').val('');
+			}
+			else {
+				var input = $('#input').val();
+				$('#input').val('');
+				$('.output').append("<span class='command'>"+input+"</span><br>");
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var results = JSON.parse(this.responseText);
+						if(results['error']){
+							$('.output').append("<span class='prefix'>=></span><span class='error'>"+results['error']+"</span><br><br>");
+						}
+						else{
+							for(var i=0;i<results.length;i++)$('.output').append("<span class='prefix'>=> </span><span class='number'> "+results[i]+"</span><br>");
+							$('.output').append("<br>");
+							$(".output").scrollTop($(".output")[0].scrollHeight);
+						}
+					}
+				};
+				xhttp.open("GET", "http://www.huseinhouse.com:8051/calculator/api/v1.0/?book="+$('#select-book').val()+"&equation="+input.replace(/\+/g, "%2B"), true);
+				xhttp.send();
+			}//
+		}
+	});
+	$('select').material_select();
+	$('#example').click(function(){
+		$('#input').val("i + love + you / (harry + hermoine)");
+	})
+	</script>
+
+</body>
+</html>

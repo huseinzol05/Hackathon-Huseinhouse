@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Twitter WordCloud</title>
+  <link rel="shortcut icon" href="css/twitter.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
+</head>
+<body>
+
+  <div class="side-nav fixed" style="width:350px; padding-left:10px; padding-right:10px;">
+    <h4 class="header center text lighten-2">Live Feed</h4>
+    <div id="livefeed">
+    </div>
+  </div>
+  <div class="section no-pad-bot" id="index-banner" style="padding-left:380px;">
+    <br><br>
+    <div class="row center">
+      <div class="input-field col s2">
+        <select id="query">
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="200">200</option>
+        </select>
+        <label>Limit Query</label>
+      </div>
+      <div class="input-field col s2">
+        <select id="wordcloud">
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="200">200</option>
+        </select>
+        <label>Limit Wordcloud</label>
+      </div>
+      <div class="input-field col s2">
+        <select id="topn">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="30">30</option>
+        </select>
+        <label>Top-n Topics and Influencers</label>
+      </div>
+      <div class="input-field col s2">
+        <select id="refresh">
+          <option value="1" selected>1 mins</option>
+          <option value="2">2 mins</option>
+          <option value="3">3 mins</option>
+          <option value="5">5 mins</option>
+        </select>
+        <label>Refresh rate</label>
+      </div>
+      <div class="input-field col s2">
+        <h5 id="time">00:00</h5>
+        <label class="active">Current time</label>
+      </div>
+      <div class="input-field col s2">
+        <h5 id="timer">00:00</h5>
+        <label class="active">Refresh timer</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="row">
+          <div id="div_influencer" style="height: 200px;"></div>
+        </div>
+        <div class="row">
+          <div id="div_topic" style="height: 200px;"></div>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div id="div_heatmap" style="height: 400px;"></div>
+      </div>
+      <div class="col s12 m4">
+        <canvas id="canvas-wordcloud" width="500px" height="400px"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m4">
+        <div id="div_sentiment" style="height: 350px;"></div>
+      </div>
+      <div class="col s12 m4">
+        <div id="div_graph" style="height: 350px;"></div>
+      </div>
+      <div class="col s12 m4">
+        <div id="div_radial" style="height: 350px;"></div>
+      </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/echarts-gl.min.js"></script>
+    <script src="js/socket.io-1.2.0.js"></script>
+    <script src="js/wordcloud2.js"></script>
+    <script src="js/init.js"></script>
+  </body>
+  </html>

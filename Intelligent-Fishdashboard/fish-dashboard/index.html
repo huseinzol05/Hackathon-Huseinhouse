@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expert Dashboard</title>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="css/uploader.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/demo.css" rel="stylesheet" />
+  <style>
+  #myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #myImg:hover {opacity: 0.7;}
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
+    max-height: 100%
+  }
+
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+  }
+
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+
+  /* Add Animation */
+  .modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+  }
+
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
+  </style>
+
+</head>
+<body role="document">
+  <div class="container demo-wrapper">
+    <div class="page-header">
+      <h3>Expert <small>Fish Dashboard</small></h3>
+    </div>
+    <div class="row demo-columns">
+      <div class="col l6">
+        <div id="drag-and-drop-zone" class="uploader">
+          <div>Drag &amp; Drop Images Here</div>
+          <div class="or">-or-</div>
+          <div class="browser">
+            <label>
+              <span>Click to open the file Browser</span>
+              <input type="file" name="files" id="files" multiple="multiple" title='Click to add Files'>
+            </label>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Debug</h4>
+          </div>
+          <div class="panel-body demo-panel-debug">
+            <ul id="demo-debug">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col l6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Uploads</h4>
+          </div>
+          <div class="panel-body demo-panel-files" id='demo-files'>
+            <span class="demo-note">No Files have been selected/dropped yet.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4 class="panel-title">List fishermen</h4>
+      <table class="highlight">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Port</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr onclick="window.location='fisherman/index.html?id=1';">
+            <td>Husein Zolkepli</td>
+            <td>Cyberjaya, Selangor</td>
+            <td>Kuala Selangor, Selangor</td>
+          </tr>
+          <tr onclick="window.location='fisherman/index.html?id=2';">
+            <td>Liew Cai Juan</td>
+            <td>Kepong, Kuala Lumpur</td>
+            <td>Kuala Selangor, Selangor</td>
+          </tr>
+          <tr onclick="window.location='fisherman/index.html?id=3';">
+            <td>Joe Chan</td>
+            <td>Sri Damansara, Kuala Lumpur</td>
+            <td>Kuala Selangor, Selangor</td>
+          </tr>
+          <tr onclick="window.location='fisherman/index.html?id=4';">
+            <td>Ting Wei Kei</td>
+            <td>Damansara Height, Kuala Lumpur</td>
+            <td>Kuala Selangor, Selangor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="row">
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/pedestre.jpg" width="300">
+      </div>
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/152-2.jpg" width="300">
+      </div>
+      <div class="col l4 s12">
+        <img src="http://www.huseinhouse.com/output-vandalism/1.jpg" width="300">
+      </div>
+    </div> -->
+    <div class="footer-copyright">
+      <p>&copy; Blab-blab 2018</p>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+</div>
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/demo.min.js"></script>
+  <script type="text/javascript" src="dmuploader.min.js"></script>
+  <script type="text/javascript" src="js/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+  body {
+    background-color: #E6E6E8
+  }
+  .side-nav li>a{
+    font-weight:400 !important;
+  }
+</style>
+</head>
+<div class="loadingscreen" style="display:block;">
+  <div class="card card-loading">
+    <div class="card-image card-image-loading">
+      <div style="text-align:center;">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div style="text-align:center;">
+        <p id="paracsv">Loading Neural Network</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="navbar-fixed">
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo" style="padding-left:10px">DevconX</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="#">
+          <i class="material-icons">face</i></a>
+      </li>
+      <li>
+        <a href="#" id='fullscreen'>
+          <i class="material-icons">aspect_ratio</i></a>
+      </li>
+      <li>
+        <a href="#" >
+          <i class="material-icons">keyboard_tab</i></a>
+      </li>
+      </ul>
+  </div>
+</nav>
+</div>
+<div class="side-nav fixed" style="width:240px; margin-top:64px;padding-left:10px; padding-right:10px;">
+  <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y" style="transform: translateX(0px);">
+    <li class="user-details">
+      <div class="row">
+        <div class="col col s4 m4 l4" style="padding-top:20px;">
+          <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="" class="circle responsive-img valign profile-image cyan">
+        </div>
+        <div class="col col s8 m8 l8">
+          <p>Husein Zolkepli<br>Admin</p>
+        </div>
+      </div>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-cyan">
+            <i class="material-icons">insert_emoticon</i>
+            <span class="nav-text">Social Media Analysis</span>
+          </a>
+        </li>
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-cyan">
+            <i class="material-icons">attach_money</i>
+            <span class="nav-text">Sales Analysis</span>
+          </a>
+        </li>
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-cyan">
+            <i class="material-icons">bookmark_border</i>
+            <span class="nav-text">News Analysis</span>
+          </a>
+        </li>
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-cyan">
+            <i class="material-icons">show_chart</i>
+            <span class="nav-text">Stock Analysis</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div style="margin-left:240px">
+  <div class="row" style="padding-left:10px;padding-right:10px;">
+    <div class="card" style="background-color:#f2f2f2">
+      <div class="card-content">
+        <h5 class="light">Social Media Analysis<small id='tweet-count'></small></h5>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:400px;overflow:auto">
+                  <div id="div_wordcloud_hashtags" style="height: 350px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:400px;overflow:auto">
+                  <div id="div_wordcloud" style="height: 350px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:400px;overflow:auto">
+                  <div id="div_sentiment" style="height: 350px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:400px;overflow:auto">
+                  <div id="div_heatmap" style="height: 350px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:300px;overflow:auto">
+                  <div id="div_topic_social" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:300px;overflow:auto">
+                  <div id="div_influencer_social" style="height: 250px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-left:10px;padding-right:10px;">
+    <div class="card" style="background-color:#f2f2f2">
+      <div class="card-content">
+        <h5 class="light">Sales Analysis</h5>
+        <div class="row">
+          <div class="col s12 m5">
+            <div class="card">
+              <div class="card-content" style="height:650px;">
+                <div id="div_correlation" style="height: 600px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m7">
+            <div class="card">
+              <div class="card-content" style="height:650px;">
+                <div class="col s12 m9">
+                  <div id="div_4_axis" style="height: 600px;"></div>
+                </div>
+                <div class="col s12 m3">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id='xaxisleft'>
+                      </select>
+                      <label>xAxisLeft</label>
+                    </div>
+                  </div><br><br>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id='yaxistop'>
+                      </select>
+                      <label>yAxisTop</label>
+                    </div>
+                  </div><br><br>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id='xaxisright'>
+                      </select>
+                      <label>xAxisRight</label>
+                    </div>
+                  </div><br><br>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select id='yaxisbottom'>
+                      </select>
+                      <label>yAxisBottom</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:600px;">
+                <div class="row">
+                  <div id="div_polynomial" style="height: 450px;"></div>
+                </div>
+                <div class="row center">
+                  <div class="input-field col s12 m3 offset-m2">
+                    <input id="polynomial-k" type="number" placeholder="Eg: 3" max="30" min="1"class="validate valid" value="2">
+                    <label class="active">Polynomial K</label>
+                  </div>
+                  <div class="input-field col s12 m3">
+                    <input id="future" type="number" placeholder="Eg: 3" max="10" min="1" class="validate valid" value="3">
+                    <label class="active">Future count</label>
+                  </div>
+                  <div class="input-field col s12 m2">
+                    <button id="trainbutton" class="waves-effect waves-light btn red lighten-2">Fit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:600px;">
+                <div id="div_pie" style="height: 550px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content" style="height:500px;overflow:auto">
+                <table class="highlight">
+                  <thead>
+                    <tr id="table-header">
+                    </tr>
+                  </thead>
+                  <tbody id="table-body">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-left:10px;padding-right:10px;">
+    <div class="card" style="background-color:#f2f2f2">
+      <div class="card-content">
+        <h5 class="light">News Analysis</h5>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:250px;overflow:auto">
+                <div id="div_topic" style="height: 200px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:250px;overflow:auto">
+                <div id="div_influencer" style="height: 200px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:450px;overflow:auto">
+                <div id="div_graph" style="height: 400px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content" style="height:450px;overflow:auto">
+                <div id="div_radial" style="height: 400px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content" style="height:350px;overflow:auto">
+                <div id="div_sankey" style="height: 500px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-left:10px;padding-right:10px;">
+    <div class="card" style="background-color:#f2f2f2">
+      <div class="card-content">
+        <h5 class="light">Stock Analysis</h5>
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content" style="height:690px;overflow:auto">
+                <div class="row">
+                  <div class="input-field col s12 m3">
+                    <input id="future_stock" type="number" placeholder="Eg: 3" max="10" min="1" class="validate valid" value="30">
+                    <label class="active">Future count (days)</label>
+                  </div>
+                  <div class="input-field col s12 m2">
+                    <button id="trainbutton_stock" class="waves-effect waves-light btn red lighten-2">Forecast</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="div_stock" style="height: 500px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content" style="height:600px;overflow:auto">
+                <h5 id="nested-date"></h5>
+                <div class="row">
+                  <div class="col s12 m4">
+                    <div id="div_news" style="height: 300px;"></div>
+                  </div>
+                  <div class="col s12 m4">
+                    <div id="div_hot_topics" style="height: 300px;"></div>
+                  </div>
+                  <div class="col s12 m4">
+                    <div id="div_hot_person" style="height: 300px;"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <h5>Summary: <small id="summary"></small></h5>
+                  <h5>Sentiment: <small id="sentiment-string"></small></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/tf.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/numeric-1.2.6.min.js"></script>
+<script src="js/numjs.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-gl.min.js"></script>
+<script src="js/echarts-wordcloud.min.js"></script>
+<script type="text/javascript" src="js/ecStat.min.js"></script>
+<script src="js/data-news.js"></script>
+<script src="js/stock.js"></script>
+<script src="js/twitter.js"></script>
+<script src="js/export.js"></script>
+<script src="layers.js"></script>
+<script src="graph.js"></script>
+</html>
