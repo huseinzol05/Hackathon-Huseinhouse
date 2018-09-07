@@ -44,13 +44,15 @@ Pretty much overfitted, 72% achieved during validation
 fine enough for hackathon!
 
 ## emotion model architecture
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/graph-emotion1.png)
+![alt text](screenshot/graph-emotion1.png)
 
 ## person model architecture
-![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/graph-person.png)
+![alt text](screenshot/graph-person.png)
 
 0.5. Unzip *.zip from data/, dataperson/ in the same directories. You can add new pictures or remove some.
+
 0.6. Download the pretrained [here for emotion model](https://drive.google.com/open?id=0BxQQlrLbdunWOVhIMkwtWTdlWXc)
+
 1. You able to capture new face using capture.py
 2. You need to train person detection using train_person.py
 3. You able to train the emotion using train_emotion.py

@@ -7,7 +7,7 @@ sudo pip install tensorflow opencv2 matplotlib scipy numpy flask
 ```
 
 ## Flower study
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/flowers.png)
+![alt text](screenshot/flowers.png)
 
 Positive characteristics:
 
@@ -23,7 +23,7 @@ Positive characteristics:
 You can check the model in model_flower.py
 
 ## Crop study
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/crop.png)
+![alt text](screenshot/crop.png)
 
 1. We study green color intensity
 2. We study color codes for crops
@@ -31,7 +31,7 @@ You can check the model in model_flower.py
 4. In the future, we can use Convolutional Neural Network to do give some sense of output for healthy condition
 
 #### Some output from our system, [link here](http://www.huseinhouse.com/cropsystem/)
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/1.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/2.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/3.png)
-![alt text](https://raw.githubusercontent.com/Mongoool/Cropper-System/master/screenshot/4.png)
+![alt text](screenshot/1.png)
+![alt text](screenshot/2.png)
+![alt text](screenshot/3.png)
+![alt text](screenshot/4.png)
