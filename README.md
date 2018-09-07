@@ -4,6 +4,7 @@ Gathered hackathon and huseinhouse dashboards, [huseinhouse.com](http://huseinho
 ![alt text](tags/tag-big--data-green.svg)
 ![alt text](tags/tag-machine--learning-green.svg)
 ![alt text](tags/tag-deep--learning-green.svg)
+![alt text](tags/tag-IOT-green.svg)
 
 ## Hackathon
 
