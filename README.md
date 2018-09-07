@@ -28,8 +28,7 @@ using Malaysia open data, developed big data dashboard for crime and drugs corre
 
 using traffic dataset, developed bayesian system able to show probability ripple effects of locations when traffic happened.
 
-#### 7. Social Media Analysis, AWS Hackathon 2018 ![alt text](tags/tag-big--data-green.svg)
-![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-NLP-green.svg)
+#### 7. Social Media Analysis, AWS Hackathon 2018 ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-NLP-green.svg)
 
 using social media, local news and AWS Comprehend, developed big data dashboard correlation with stock market.
 
