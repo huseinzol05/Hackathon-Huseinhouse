@@ -15,8 +15,7 @@ using deep learning and computer vision, able to detect flowers attraction proba
 
 using deep learning, detects emotion and play house music based on it.
 
-#### 4. Intelligent Fish Dashboard, Fishackathon 2018 ![alt text](tags/tag-deep--learning-green.svg)
-![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-machine--learning-green.svg)
+#### 4. Intelligent Fish Dashboard, Fishackathon 2018 ![alt text](tags/tag-deep--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-machine--learning-green.svg)
 
 using big data and deep learning, do time-series analysis and forecasting for fishermen historical dataset and correlation.
 
