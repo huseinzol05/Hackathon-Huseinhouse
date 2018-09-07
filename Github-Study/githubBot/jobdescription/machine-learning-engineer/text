@@ -1,0 +1,14 @@
+computability and complexity (P vs. NP, NP-complete problems, big-O notation, approximate algorithms
+A formal characterization of probability (conditional probability, Bayes rule, likelihood, independence
+techniques derived from it (Bayes Nets, Markov Decision Processes, Hidden Markov Models)
+Closely related to this is the field of statistics, which provides various measures (mean, median, variance)
+distributions (uniform, normal, binomial, Poisson) and analysis methods ANOVA, hypothesis testing
+finding useful patterns (correlations, clusters, eigenvectors)
+unseen instances (classification, regression, anomaly detection)
+choose an appropriate accuracy / error measure (log-loss for classification, sum-of-squared-errors for regression)
+and an evaluation strategy (training-testing split, sequential vs. randomized cross-validation)
+utilize resulting errors to tweak the model (backpropagation for neural networks)
+Machine Learning algorithms are widely available through libraries / packages / APIs (scikit-learn, Theano, Spark MLlib, H2O, TensorFlow)
+suitable model (decision tree, nearest neighbor, neural net, support vector machine, ensemble of multiple models)
+a learning procedure to fit the data (linear regression, gradient descent, genetic algorithms, bagging, boosting, and other model-specific methods)s
+the numerous gotchas that can trip you (bias and variance, overfitting and underfitting, missing data, data leakage)

@@ -74,3 +74,7 @@ Train your own Neural Network with custom hyper-parameters and visualize the dec
 #### 8. Recurrent Network 101 ![alt text](tags/tag-deep--learning-green.svg)
 
 Train your own time-stamp data-set on browser using deep recurrent neural network.
+
+#### 9. Github-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg)
+
+#### 10. MBTI-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) 

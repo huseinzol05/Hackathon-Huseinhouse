@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Soaning API</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+    <div class="card card-loading">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="paraloading">Searching github account..</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="indigo lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button' href='#' data-activates='dropsoaning'>Soaning</a>
+          <ul id='dropsoaning' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/soaning">Soaning-Github</a></li>
+            <li><a href="http://www.huseinhouse.com/soaning-pdf">Soaning-PDF</a></li>
+            <li><a href="#">Main website</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropvisualization'>Visualization</a>
+          <ul id='dropvisualization' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/manifold/">Manifold Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/visualization">Statistics Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/3d-visualization">3D Visualization</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropsentiment'>NLP</a>
+          <ul id='dropsentiment' class='dropdown-content'>
+            <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+            <li><a href="http://www.huseinhouse.com/component">Component Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/sentiment">Text Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/trendsentiment/">Trending Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="http://www.huseinhouse.com/vandalism">Vandalism Detection System</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/visualization">Data Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+        <li><a href="http://www.huseinhouse.com/trendsentiment">Trend Sentiment</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br>
+      <h1 class="header center indigo-text text-lighten-2">Soaning-Github</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">An Intelligent Screening API for Github account</h5>
+        <div class="input-field col s6 offset-s2">
+          <input id="githubname" type="text" class="validate">
+          <label for="githubname">Insert Github name</label>
+        </div>
+        <div class="col s2" style="padding-top:20px;">
+          <button id="submitbutton" class="waves-effect waves-light btn indigo lighten-2">Analyze</button>
+        </div>
+      </div>
+      <br>
+      <div id="slidedownhell" hidden>
+        <div class="row center" id="githubhell" style="height: 150px;">
+          <div class="github-card" data-github="huseinzol05" data-width="800" data-height="150" data-theme="default"></div>
+        </div>
+        <div id="dropdown">
+          <div class="row">
+            <div class="input-field col l4 m4 s6">
+              <input placeholder="Placeholder" id="firstname" readonly type="text" value="" class="validate">
+            </div>
+            <div class="input-field col l4 m4 s6">
+              <input type="text" id="firststatus" value="" readonly class="validate">
+            </div>
+            <div class="input-field col l4 m4 s12">
+              <input type="text" id="firsturl" value="" readonly class="validate">
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="header col s12 light"><span id="firstcontribution"></span> this year, average <span id="firstavgcontribution"></span> contribution daily</h5>
+          </div>
+          <div class="row">
+            <canvas id="firstdailychart" height="80"></canvas>
+          </div>
+          <div class="row">
+            <div class="col l6 m6 s12">
+              <canvas id="firstweekchart" height="120"></canvas>
+            </div>
+            <div class="col l6 m6 s12">
+              <canvas id="firstmonthchart" height="120"></canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col l6 m6 s12">
+              <canvas id="firstradar"></canvas>
+            </div>
+            <div class="col l6 m6 s12">
+              <canvas id="firstbar" height="300"></canvas>
+              <p>If your repositories bring positive impact to the technology, the value tends to go positive, vice versa</p>
+              <p>If your repositories follow current technology sensitivity, the value tends to go positive, vice versa</p>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="header col s12 light">Pinned repositories</h5>
+            <ul class="collection" id="firstpinned">
+            </ul>
+          </div>
+          <h5 class="header col s12 light">All repositories</h5>
+          <div class="row">
+            <ul class="collapsible popout" data-collapsible="accordion" id="firstrepos">
+              <li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer indigo lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Hi!</h5>
+          <p class="grey-text text-lighten-4">If you are interested with my work or want to do future collaboration, feel free to drop an email to me.<br>husein.zol05@gmail.com</p>
+        </div>
+        <div class="col l3 s12">
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Other Website</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+            <li><a class="white-text" href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/Maria-Stock-Bot-1444509452281755/">Predict Stock Market</a></li>
+            <li><a class="white-text" href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/widget.js"></script>
+  <script src="js/moment.min.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="js/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Soaning-PDF API</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+    <div class="card card-loading">
+      <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="paraloading">Uploading PDF file..</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="indigo lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button' href='#' data-activates='dropsoaning'>Soaning</a>
+          <ul id='dropsoaning' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/soaning">Soaning-Github</a></li>
+            <li><a href="http://www.huseinhouse.com/soaning-pdf">Soaning-PDF</a></li>
+            <li><a href="#">Main website</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropvisualization'>Visualization</a>
+          <ul id='dropvisualization' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/manifold/">Manifold Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/visualization">Statistics Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/3d-visualization">3D Visualization</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropsentiment'>NLP</a>
+          <ul id='dropsentiment' class='dropdown-content'>
+            <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+            <li><a href="http://www.huseinhouse.com/component">Component Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/sentiment">Text Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/trendsentiment/">Trending Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="http://www.huseinhouse.com/vandalism">Vandalism Detection System</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/visualization">Data Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+        <li><a href="http://www.huseinhouse.com/trendsentiment">Trend Sentiment</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br>
+      <h1 class="header center indigo-text text-lighten-2">Soaning-PDF</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">An Intelligent Screening API for personal Resume / CV</h5>
+        <div class="input-field col s12">
+          <div class="file-field input-field">
+            <div class="btn indigo lighten-2">
+              <span>Upload PDF</span>
+              <input id="uploadpdf" type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row center">
+        <button id="submitbutton" class="waves-effect waves-light btn indigo lighten-2">Analyse</button>
+      </div>
+      <br>
+      <div class="row">
+        <div id="myDiv" style="height:400px;"></div>
+      </div>
+      <div id="slidedownhell" hidden>
+        <div class="row">
+          <div class="col l6 s12">
+            <canvas id="canvas-developer"></canvas>
+          </div>
+          <div class="col l6 s12">
+            <canvas id="canvas-personality"></canvas>
+          </div>
+        </div>
+        <div class="row">
+          <h5>Personality: <span id="userpersonality"></span></h5>
+          <p id="personalitydesc"></p>
+          <p>All these being studied using MBTI personality characteristics, you can read more <a href="http://www.myersbriggs.org/my-mbti-personality-type/mbti-basics/home.htm?bhcp=1">here</a></p>
+        </div>
+        <div class="row">
+          <h6>Introversion(I)</h6>
+          tend to be inward turning, or focused more on internal thoughts, feelings and moods rather than seeking out external stimulation.
+          <h6>Extraversion(E)</h6>
+          enjoy engaging with the external world. These individuals thrive on excitement, and are enthusiastic, action-oriented people. They like to be the center of attention in groups.
+          <h6>Sensing(S)</h6>
+          pay attention to both immediate data from their five senses and from their own direct experiences. They are create meaning from conscious thought, rather than trusting their subconscious, limiting their attention to facts and solid data. As necessary, they will happily dig into the fine detail of the situation.
+          <h6>Intuition(N)</h6>
+          process data more deeply than sensors and are happy to trust their subconscious and 'sixth sense', gut feel, intuition or whatever you want to call it. They are good at spotting patterns and taking a high-level view, as opposed to digging into the detail.
+          <h6>Thinking(T)</h6>
+          decide based primarily on logic, and when they do so, they consider a decision to be made. They tend to see the world in black and white and dislike fuzziness.
+          <h6>Feeling(F)</h6>
+          decide based primarily through social considerations, listening to their heart and considering the feelings of others.
+          <h6>Judging(J)</h6>
+          approach life in a structured way, creating plans and organizing their world to achieve their goals and desired results in a predictable way.
+          <h6>Perceiving(P)</h6>
+          perceive structure as being more limiting than enabling. They prefer to keep their choices open so they can cope with many problems that the know life will put in their way.
+        </div>
+    </div>
+  </div>
+  <footer class="page-footer indigo lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Hi!</h5>
+          <p class="grey-text text-lighten-4">If you are interested with my work or want to do future collaboration, feel free to drop an email to me.<br>husein.zol05@gmail.com</p>
+        </div>
+        <div class="col l3 s12">
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Other Website</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+            <li><a class="white-text" href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/Maria-Stock-Bot-1444509452281755/">Predict Stock Market</a></li>
+            <li><a class="white-text" href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="js/husein.js"></script>
+  <script src="js/init.js"></script>
+</body>
+</html>
