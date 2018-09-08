@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 3px;
+}
+text {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+</style>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Twitter Visualization</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<div class="side-nav fixed">
+  <div class="container">
+    <h4 class="header center orange-text lighten-2">Twitter Visualization</h4>
+    <div class="row center">
+      <p class="header col s12 light">Visualize local Trending Twitter on low dimensional space</p>
+      <p class="header col s12 light">Last update: <p id="updatetime"></p></p>
+    </div>
+    <div class="row center">
+      <button id="submitbutton" style="width: 220px" class="waves-effect waves-light btn orange lighten-2">Word Vector</button>
+    </div>
+    <div class="row center">
+      <button id="heatmapbutton" style="width: 220px" class="waves-effect waves-light btn orange lighten-2">Correlation Study</button>
+    </div>
+    <div class="row center">
+      <button id="decisionbutton" style="width: 220px" class="waves-effect waves-light btn orange lighten-2">Topic Boundaries</button>
+    </div>
+    <div class="row center">
+      <button id="graphbutton" style="width: 220px" class="waves-effect waves-light btn orange lighten-2">Directed Graph</button>
+    </div>
+
+    <br>
+    <div class="row center">
+      <div class="input-field col s12">
+        <select id="issuesentiment">
+        </select>
+        <label>Issue Sentiment</label>
+      </div>
+    </div>
+    <div class="row center">
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">accessibility</i>Person</div>
+          <div class="collapsible-body"><span id="span-person"></span></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">business_center</i>Organization</div>
+          <div class="collapsible-body"><span id="span-org"></span></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">location_on</i>GPE</div>
+          <div class="collapsible-body"><span id="span-gpe"></span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Logistic Emotion</p>
+      <canvas id="myChart3"></canvas>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Gender</p>
+      <canvas id="myChart5"></canvas>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Sentence Attributes</p>
+      <canvas id="myChart4"></canvas>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Logistic Sentiment</p>
+      <canvas id="myChart2"></canvas>
+    </div>
+    <div class="row center">
+      <p class="header col s12 light">Probabilistic Sentiment</p>
+      <canvas id="myChart1"></canvas>
+    </div>
+  </div>
+</div>
+<body>
+
+  <nav class="orange lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button' href='#' data-activates='dropvisualization'>Visualization</a>
+          <ul id='dropvisualization' class='dropdown-content'>
+            <li><a href="http://www.huseinhouse.com/unimytwitter-user">Personality Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/manifold/">Manifold Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/visualization">Statistics Visualization</a></li>
+            <li><a href="http://www.huseinhouse.com/3d-visualization">3D Visualization</a></li>
+          </ul>
+        </li>
+        <li><a class='dropdown-button' href='#' data-activates='dropsentiment'>NLP</a>
+          <ul id='dropsentiment' class='dropdown-content'>
+            <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+            <li><a href="http://www.huseinhouse.com/component">Component Analysis</a></li>
+            <li><a href="http://www.huseinhouse.com/trendsentiment/">Trending Analysis</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="http://www.huseinhouse.com/vandalism">Vandalism Detection System</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://www.huseinhouse.com/twittervisualization">Twitter Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/unimytwitter-user">UniMy Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/neuralnet">Neural Network 101</a></li>
+        <li><a href="http://www.huseinhouse.com/visualization">Data Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/cropsystem/">Crop System</a></li>
+        <li><a href="https://huseinzol05.dynamic-dns.net/ripplesystem">Ripple System</a></li>
+        <li><a href="https://www.facebook.com/marialovelacebot/">Personal Chatbot with Sentiment</a></li>
+        <li><a href="http://www.huseinhouse.com/trendsentiment">Trend Sentiment</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div id="plotly-graph">
+    <div class="section no-pad-bot" id="index-banner">
+      <div id="myDiv" style="width:100%;height:1080px;"></div>
+    </div>
+    <div class="section no-pad-bot" id="banner" style="display: none;">
+      <div id="myDiv2" style="width:100%;height:600px;"></div>
+    </div>
+  </div>
+  <div id="d3-graph" class="section no-pad-bot" style="display: none;">
+    <svg id="svggraph" style="width:100%;height:800px;"></svg>
+  </div>
+  <footer class="page-footer orange lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">My Bio</h5>
+          <p class="grey-text text-lighten-4"><a href='http://www.huseinhouse.com/twittervisualization/data'>You can get the data here.</a> If you are interested with my work or want to do future collaboration, feel free to drop an email to me.<br>husein.zol05@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: false,
+    hover: true,
+    gutter: 0,
+    belowOrigin: true,
+    alignment: 'left',
+    stopPropagation: false
+  }
+);
+gettrend();
+</script>
+</body>
+</html>

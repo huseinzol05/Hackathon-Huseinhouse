@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Forecasting Visualization</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <div class="loadingscreen">
+   <div class="card card-loading">
+     <a class="btn-floating btn-small waves-effect waves-light red" id="cancelrequest" style="float: right; margin-top: 5px; margin-right: 5px;"><i class="material-icons">power_settings_new</i></a>
+     <div class="card-image card-image-loading">
+       <div style="text-align:center;">
+         <div class="preloader-wrapper big active">
+           <div class="spinner-layer spinner-blue">
+             <div class="circle-clipper left">
+               <div class="circle"></div>
+             </div><div class="gap-patch">
+               <div class="circle"></div>
+             </div><div class="circle-clipper right">
+               <div class="circle"></div>
+             </div>
+           </div>
+
+           <div class="spinner-layer spinner-red">
+             <div class="circle-clipper left">
+               <div class="circle"></div>
+             </div><div class="gap-patch">
+               <div class="circle"></div>
+             </div><div class="circle-clipper right">
+               <div class="circle"></div>
+             </div>
+           </div>
+
+           <div class="spinner-layer spinner-yellow">
+             <div class="circle-clipper left">
+               <div class="circle"></div>
+             </div><div class="gap-patch">
+               <div class="circle"></div>
+             </div><div class="circle-clipper right">
+               <div class="circle"></div>
+             </div>
+           </div>
+
+           <div class="spinner-layer spinner-green">
+             <div class="circle-clipper left">
+               <div class="circle"></div>
+             </div><div class="gap-patch">
+               <div class="circle"></div>
+             </div><div class="circle-clipper right">
+               <div class="circle"></div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="card-content">
+       <div style="text-align:center;">
+         <p id="paracsv">Processing CSV</p>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="loadingscreen-fail">
+    <div class="card card-loading card-fail">
+      <div class="card-image card-image-loading">
+        <div style="text-align:center;">
+          <img src='css/xmark.gif' class='imagefail' style='width:130px; display: initial;'>
+        </div>
+      </div>
+      <div class="card-content">
+        <div style="text-align:center;">
+          <p id="failparagraph">Fail to create, recheck your details</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="http://www.huseinhouse.com/manifold">Manifold Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/visualization">Statistical Visualization</a></li>
+        <li><a href="http://www.huseinhouse.com/">www.huseinhouse.com</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center light-blue-text lighten-2">Forecasting Visualization</h1>
+      <div class="row center">
+        <h5 class="header col s12 light" id="headertag">Visualize on any historical timestamp data-set</h5>
+      </div>
+      <div class="row center">
+        <div class="col s8 file-field input-field">
+          <div class="btn light-blue lighten-2">
+            <span>Upload CSV</span>
+            <input id="uploadcsv" type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <div class="input-field col s2">
+          <input id="rollingday" type="number" class="validate">
+          <label>Historical rolling</label>
+        </div>
+        <div class="input-field col s2">
+          <input id="future" type="number" class="validate">
+          <label>Future count</label>
+        </div>
+      </div>
+      <div class="row center">
+        <button id="submitbutton" class="waves-effect waves-light btn light-blue lighten-2">Visualize</button>
+      </div>
+    </div>
+  </div><br>
+  <div class="row" id="output">
+    <div id="div-buysell" style="height: 700px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-candlestick" style="height: 600px;"></div>
+  </div>
+  <div class="row center">
+    <div class="col s11" style="padding-left: 50px;">
+      <ul class='collapsible' data-collapsible='accordion' id="p-prob">
+      </ul>
+  </div>
+  </div>
+  <div class="row">
+    <div id="div-overlap" style="height: 600px;"></div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <div id="div-donut-title" style="height: 400px;"></div>
+    </div>
+    <div class="col s6">
+      <div id="div-donut-news" style="height: 400px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="div-sentiment" style="height: 500px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-compose" style="height: 500px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-avg" style="height: 250px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-correlation" style="height: 400px;"></div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <div id="div-kde-buy" style="height: 600px;"></div>
+    </div>
+    <div class="col s6">
+      <div id="div-kde-sell" style="height: 600px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="div-bar" style="height: 300px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-qq" style="height: 300px;"></div>
+  </div>
+  <div class="row">
+    <div id="div-histogram" style="height: 300px;"></div>
+  </div>
+  <footer class="page-footer light-blue lighten-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">My Bio</h5>
+          <p class="grey-text text-lighten-4">I'm a jobless, any amount would help my stomach or got any issue. Cheers<br>husein.zol05@gmail.com</p>
+        </div>
+        <div class="col l3 s12">
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+    </div>
+  </footer>
+
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/plotly-latest.min.js"></script>
+  <script src="js/val.js"></script>
+  <script src="js/init.js"></script>
+</body>
+</html>

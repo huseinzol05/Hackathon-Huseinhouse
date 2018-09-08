@@ -80,3 +80,7 @@ Leisure project to study Github profile using machine learning, Github API and r
 #### 10. MBTI-Study ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg)
 
 Leisure project to study a MBTI profile PDF using machine learning.
+
+#### 11. Stock Forecasting ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg)
+
+#### 12. Twitter Visualization ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-deep--learning-green.svg)
