@@ -88,3 +88,7 @@ Leisure project to forecast any stock market, correlated with news and environme
 #### 12. Twitter Visualization ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-deep--learning-green.svg)
 
 Leisure project to study Twitter scatter attributes, emotions, political views, polarity, sentiments and irony.
+
+#### 13. Face Analysis with Elastic Search ![alt text](tags/tag-deep--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-computer--vision-green.svg)
+
+Face analysis with deep learning models and elastic search.
