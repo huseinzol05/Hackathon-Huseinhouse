@@ -83,4 +83,8 @@ Leisure project to study a MBTI profile PDF using machine learning.
 
 #### 11. Stock Forecasting ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg)
 
+Leisure project to forecast any stock market, correlated with news and environmental data.
+
 #### 12. Twitter Visualization ![alt text](tags/tag-NLP-green.svg) ![alt text](tags/tag-machine--learning-green.svg) ![alt text](tags/tag-big--data-green.svg) ![alt text](tags/tag-deep--learning-green.svg)
+
+Leisure project to study Twitter scatter attributes, emotions, political views, polarity, sentiments and irony.
