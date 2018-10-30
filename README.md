@@ -39,6 +39,10 @@ using deep learning, developed image detection integrated with Facebook chatbot.
 
 using deep learning and machine learning, developed in house security and play in house music based on face recognition and music.
 
+#### 10. Zoo-Hackathon 2018 ![alt text](tags/tag-computer--vision-green.svg) ![alt text](tags/tag-deep--learning-green.svg)
+
+using deep learning and Flask socketIO to do realtime prediction and big data analytics dashboard.
+
 ## Huseinhouse
 
 #### 1. Flower dashboard ![alt text](tags/tag-deep--learning-green.svg) ![alt text](tags/tag-IOT-green.svg)
